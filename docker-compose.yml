@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    ports:
+      - 4300:4300
+    volumes:
+      - "./:/var/www/html"
+    working_dir: /var/www/html
+    command: ng serve --host 0.0.0.0 --poll=2000 --port=4300
