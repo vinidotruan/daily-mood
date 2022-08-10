@@ -1,12 +1,13 @@
-FROM node:latest as angular-daily-mood-app
+FROM node:lts as daily-mood
 
-RUN apt update && apt upgrade -y
+WORKDIR /app
 
-EXPOSE 4300
+COPY package.json ./
 
-USER node
-RUN mkdir /home/node/.npm-global
-ENV PATH=/home/node/.npm-global/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+RUN npm install
 
-RUN npm i -g @angular/cli
+COPY . .
+
+EXPOSE 4200
+
+CMD npm run start
